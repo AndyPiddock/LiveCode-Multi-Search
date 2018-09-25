@@ -1,8 +1,16 @@
 ﻿script "LiveCodeMultiSearchMainGroupid1053ResourcesListButtonBehavior"
 on menuPick pItemName
+   
+   local tMenuHistory
+   
    set the visible of widget "Browser Resources List" to true
-   set the url of widget "Browser Resources List" to pItemName
+   
+   --check which item in the button list is selected and retrieve the corresponding custom property value
+   put the menuhistory of btn "Resources List" into tMenuHistory
+   set the url of widget "Browser Resources List" to item 2 of line tMenuHistory of the cpResources of stack "LiveCode Multi-Search"
+   
    set the backcolor of  graphic "ResourcesBG" to empty
+   
 end menuPick
 
 
