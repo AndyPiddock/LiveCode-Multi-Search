@@ -5,54 +5,59 @@
 
 
 on preOpenSatck
-    local tResources
-    local tCpCount
-    local tResourcesCount
-    local tResourcesString
-
-    put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
-    put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
-
-    --build resorces list
-	put "LiveCode Super Site,http://livecodesupersite.com/" & return into tResources
-	put "LiveCode Cheat Sheets,https://livecode.com/resources/cheat-sheets/" & return after tResources
-
-	--create resources button
-	set the cpResources of stack "LiveCode Multi-Search" to tResources
-
-	put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
-
-	repeat with tResourcesCount = 1 to tCpCount
-
-	put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
-
-	end repeat
-
-
-	set the text of of btn "Resources List" of card "Main" of stack "LiveCode Multi-Search" to tResourcesString
-
-    --setup Navigation Bar - segmented control widget
-    local tNumberList
-    local tNamesList
-    local tLabelsList
-
-    set the itemCount of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to 8
-
-    put "100,100,100,100,100,100,100,100" into tNumberList
-    put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tNamesList
-    put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tLabelsList
-
-    set the width of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the number of items of tNamesList * 100
-
-    set the itemMinExtents of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNumberList
-    set the itemNames of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNamesList
-    set the itemLabels of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search"  to tLabelsList
-
-    set the left of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the left of card "Main" of stack "LiveCode Multi-Search" +80
-
-
-    emptyUrls
-
+   local tResources
+   local tCpCount
+   local tResourcesCount
+   local tResourcesString
+   
+   put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
+   put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
+   
+   --build resorces list
+   put "LiveCode Super Site,http://livecodesupersite.com/" & return into tResources
+   put "LiveCode Cheat Sheets,https://livecode.com/resources/cheat-sheets/" & return after tResources
+   put "BYU LiveCode Gateway,http://livecode.byu.edu/" & return after tResources
+   put "Reactor Lab,http://reactorlab.net/" & return after tResources
+   put "LiveCode Learning,http://learninglivecode.blogspot.com/" & return after tResources
+   put "LiveCode Server Guide,https://activethought.net/livecode-server/introduction/" & return after tResources
+   
+   
+   --create resources button
+   set the cpResources of stack "LiveCode Multi-Search" to tResources
+   
+   put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
+   
+   repeat with tResourcesCount = 1 to tCpCount
+      
+      put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
+      
+   end repeat
+   
+   
+   set the text of of btn "Resources List" of card "Main" of stack "LiveCode Multi-Search" to tResourcesString
+   
+   --setup Navigation Bar - segmented control widget
+   local tNumberList
+   local tNamesList
+   local tLabelsList
+   
+   set the itemCount of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to 8
+   
+   put "100,100,100,100,100,100,100,100" into tNumberList
+   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tNamesList
+   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tLabelsList
+   
+   set the width of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the number of items of tNamesList * 100
+   
+   set the itemMinExtents of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNumberList
+   set the itemNames of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNamesList
+   set the itemLabels of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search"  to tLabelsList
+   
+   set the left of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the left of card "Main" of stack "LiveCode Multi-Search" +80
+   
+   
+   emptyUrls
+   
 end preOpenSatck
 
 --empty browser urls
