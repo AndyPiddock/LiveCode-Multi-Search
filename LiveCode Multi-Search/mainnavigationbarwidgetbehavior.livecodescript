@@ -13,6 +13,11 @@ on hiliteChanged
    
    put the hilitedItemNames of me into tSelected
    
+   --needed so that if the hilitedItemNames has been set to empty by the resources button the rest of the script should not fire
+   if tSelected is empty then
+   exit to top
+   end if
+   
    set the itemdel to comma
    
    --get number of controls of the current card and filter out those which are Browser widgets
