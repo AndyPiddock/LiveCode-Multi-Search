@@ -32,37 +32,40 @@ end preOpenStack
 
 
 on openStack
-
+   
    local tResources
    local tCpCount
    local tResourcesCount
    local tResourcesString
    local tFile
-
+   
    set the itemDelimiter to "/"
    get item 1 to -2 of the effective filename of this stack
    put it & "/resources.txt" into tFile
-
+   
    if there is a file tFile then--config file exists
       put url("file:" & tFile) into tResources
    else
       answer warning "Cannot find Resources file, please create a resouces.txt file in the same directory as the binary stack. Each line should have 2 items sepperated by a comma. eg Livecode web site,livecode.com"
    end if
-
+   
    --create resources button
+   
+   set the itemdel to comma
+   
    set the cpResources of stack "LiveCode Multi-Search" to tResources
-
+   
    put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
-
+   
    repeat with tResourcesCount = 1 to tCpCount
-
+      
       put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
-
+      
    end repeat
-
+   
    set the text of of btn "Resources List" of card "Main" of stack "LiveCode Multi-Search" to tResourcesString
-
-
+   
+   
 end openStack
 
 --empty browser urls
@@ -72,8 +75,6 @@ on emptyUrls
    local tControlCount
    local tControl
    local tBrowserWidgetNames
-
-   set the itemdel to comma
 
    --get number of controls of the current card and filter out those which are Browser widgets
    --and combine into a comma seperated items list
