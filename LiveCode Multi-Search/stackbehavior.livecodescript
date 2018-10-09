@@ -64,13 +64,14 @@ on openStack
 
    set the itemdel to comma
 
+   --copy resources list from text file into a CP
    set the cpResources of stack "LiveCode Multi-Search" to tResources
 
    put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
 
    repeat with tResourcesCount = 1 to tCpCount
 
-      put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
+   put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
 
    end repeat
 
