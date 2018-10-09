@@ -1,28 +1,58 @@
 ﻿script "LiveCodeMultiSearchStackBehavior"
 --LiveCode Multi-Search - Andy piddock 11/2018
---v1.0.4
 
 
+on preOpenStack
 
-on preOpenSatck
+   put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
+   put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
+
+   --setup Navigation Bar - segmented control widget
+   local tNumberList
+   local tNamesList
+   local tLabelsList
+
+   set the itemCount of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to 8
+
+   put "100,100,100,100,100,100,100,100" into tNumberList
+   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tNamesList
+   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tLabelsList
+
+   set the width of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the number of items of tNamesList * 100
+
+   set the itemMinExtents of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNumberList
+   set the itemNames of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNamesList
+   set the itemLabels of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search"  to tLabelsList
+
+   set the left of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the left of card "Main" of stack "LiveCode Multi-Search" +80
+
+   emptyUrls
+
+end preOpenStack
+
+
+on openStack
+   
    local tResources
    local tCpCount
    local tResourcesCount
    local tResourcesString
+   local tFile
    
-   put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
-   put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
+   set the itemDelimiter to "/"
+   get item 1 to -2 of the effective filename of this stack
+   put it & "/resources.txt" into tFile
    
-   --build resorces list
-   put "LiveCode Super Site,http://livecodesupersite.com/" & return into tResources
-   put "LiveCode Cheat Sheets,https://livecode.com/resources/cheat-sheets/" & return after tResources
-   put "BYU LiveCode Gateway,http://livecode.byu.edu/" & return after tResources
-   put "Reactor Lab,http://reactorlab.net/" & return after tResources
-   put "LiveCode Learning,http://learninglivecode.blogspot.com/" & return after tResources
-   put "LiveCode Server Guide,https://activethought.net/livecode-server/introduction/" & return after tResources
-   
+   if there is a file tFile then--config file exists
+      put url("file:" & tFile) into tResources
+   else
+      answer warning "Cannot find Resources file, please create a resouces.txt file in the same directory as the binary stack. Each line should have 2 items sepperated by a comma. eg Livecode web site,livecode.com"
+   end if
    
    --create resources button
+   
+   set the itemdel to comma
+   
    set the cpResources of stack "LiveCode Multi-Search" to tResources
    
    put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
@@ -33,32 +63,10 @@ on preOpenSatck
       
    end repeat
    
-   
    set the text of of btn "Resources List" of card "Main" of stack "LiveCode Multi-Search" to tResourcesString
    
-   --setup Navigation Bar - segmented control widget
-   local tNumberList
-   local tNamesList
-   local tLabelsList
    
-   set the itemCount of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to 8
-   
-   put "100,100,100,100,100,100,100,100" into tNumberList
-   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tNamesList
-   put "LC Forum,Nabble Forum,StackOverflow,LC Dictionary,LC Lessons,GitHub,GitHub Gist,LC Wiki" into tLabelsList
-   
-   set the width of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the number of items of tNamesList * 100
-   
-   set the itemMinExtents of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNumberList
-   set the itemNames of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to tNamesList
-   set the itemLabels of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search"  to tLabelsList
-   
-   set the left of widget "NavigationBar" of card "Main" of stack "LiveCode Multi-Search" to the left of card "Main" of stack "LiveCode Multi-Search" +80
-   
-   
-   emptyUrls
-   
-end preOpenSatck
+end openStack
 
 --empty browser urls
 on emptyUrls
@@ -67,8 +75,6 @@ on emptyUrls
    local tControlCount
    local tControl
    local tBrowserWidgetNames
-
-   set the itemdel to comma
 
    --get number of controls of the current card and filter out those which are Browser widgets
    --and combine into a comma seperated items list
