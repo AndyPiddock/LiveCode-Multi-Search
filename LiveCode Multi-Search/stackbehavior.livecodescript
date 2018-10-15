@@ -4,7 +4,7 @@
 
 on preOpenStack
 
-   put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
+   put "V 1.0.5" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
    put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
 
    --setup Navigation Bar - segmented control widget
