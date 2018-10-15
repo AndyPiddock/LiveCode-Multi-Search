@@ -39,10 +39,12 @@ on openStack
    local tResourcesString
    local tFile
    local tResourcesList
+   local tDocumentsFolder
 
-   set the itemDelimiter to "/"
-   get item 1 to -2 of the effective filename of this stack
-   put it & "/resources.txt" into tFile
+   --set the itemDelimiter to "/"
+   --get item 1 to -2 of the effective filename of this stack
+   put specialFolderPath("Documents") into tDocumentsFolder
+   put tDocumentsFolder & "/lcmsresources.txt" into tFile
 
    if there is a file tFile then--config file exists
       put url("file:" & tFile) into tResources
@@ -57,6 +59,7 @@ on openStack
      put "LiveCode Server Guide,https://activethought.net/livecode-server/introduction/" after tResourcesList
 
      write tResourcesList to file tFile
+     close file tFile
      put url("file:" & tFile) into tResources
    end if
 
