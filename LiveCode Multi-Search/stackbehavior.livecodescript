@@ -4,7 +4,7 @@
 
 on preOpenStack
 
-   put "V 1.0.4" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
+   put "V 1.0.5" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
    put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
 
    --setup Navigation Bar - segmented control widget
@@ -32,40 +32,55 @@ end preOpenStack
 
 
 on openStack
-   
+
    local tResources
    local tCpCount
    local tResourcesCount
    local tResourcesString
    local tFile
-   
-   set the itemDelimiter to "/"
-   get item 1 to -2 of the effective filename of this stack
-   put it & "/resources.txt" into tFile
-   
+   local tResourcesList
+   local tDocumentsFolder
+
+   --set the itemDelimiter to "/"
+   --get item 1 to -2 of the effective filename of this stack
+   put specialFolderPath("Documents") into tDocumentsFolder
+   put tDocumentsFolder & "/lcmsresources.txt" into tFile
+
    if there is a file tFile then--config file exists
       put url("file:" & tFile) into tResources
+
    else
-      answer warning "Cannot find Resources file, please create a resouces.txt file in the same directory as the binary stack. Each line should have 2 items sepperated by a comma. eg Livecode web site,livecode.com"
+     open file tFile
+     put "LiveCode Super Site,http://livecodesupersite.com/" & return into tResourcesList
+     put "LiveCode Cheat Sheets,https://livecode.com/resources/cheat-sheets/" & return after tResourcesList
+     put "BYU LiveCode Gateway,http://livecode.byu.edu/" & return after tResourcesList
+     put "Reactor Lab,http://reactorlab.net/" & return after tResourcesList
+     put "LiveCode Learning,http://learninglivecode.blogspot.com/" & return after tResourcesList
+     put "LiveCode Server Guide,https://activethought.net/livecode-server/introduction/" after tResourcesList
+
+     write tResourcesList to file tFile
+     close file tFile
+     put url("file:" & tFile) into tResources
    end if
-   
+
    --create resources button
-   
+
    set the itemdel to comma
-   
+
+   --copy resources list from text file into a CP
    set the cpResources of stack "LiveCode Multi-Search" to tResources
-   
+
    put the number of lines of the cpResources of stack "LiveCode Multi-Search" into tCpCount
-   
+
    repeat with tResourcesCount = 1 to tCpCount
-      
-      put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
-      
+
+   put item 1 of line tResourcesCount of the cpResources of stack "LiveCode Multi-Search" & return after tResourcesString
+
    end repeat
-   
+
    set the text of of btn "Resources List" of card "Main" of stack "LiveCode Multi-Search" to tResourcesString
-   
-   
+
+
 end openStack
 
 --empty browser urls
