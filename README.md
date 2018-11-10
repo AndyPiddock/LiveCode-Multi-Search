@@ -12,7 +12,7 @@ Traverse back and forward through your searches.
 
 Add your own web resources to the Resources dropdown menu via a simple text file.
 This text file which if it does not exist is created on startup.
-The text file can be mended with your favourite resource links in the form of menu item,web link
+The text file can be amended with your favourite resource links in the form of menu item,web link
 e.g.  LiveCode Super Site,http://livecodesupersite.com/
 
 The resources file is lcmsresources.txt and will be created on first run in the user/documents folder.
