@@ -10,6 +10,15 @@ LiveCode Forum, Nabble Forum, StackOverflow, LiveCode Dictionary, LiveCode Lesso
 Filter Gist reults by extension
 Traverse back and forward through your searches
 
+Add your own web resources to the Resources dropdown menu via a simple text file.
+This menu is built from a text file which if it does not exist is created on startup.
+The text file can be mended with your favourite resource links in the form of menu item,web link
+e.g.  LiveCode Super Site,http://livecodesupersite.com/
+
+The resources file is lcmsresources.txt and will be created on first run in the user/documents folder.
+
+The option to dissable a search target was added in v1.0.6, this allows for quicker search returns if you are only intersted in searching a subset of all the search target available.
+
 The online dictionary was created using the WebDocMaker by 
 Brian Milby https://github.com/bwmilby/lc-misc/tree/master/WebDocMaker
 the output modified to accept url perameters.
