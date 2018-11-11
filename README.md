@@ -17,7 +17,7 @@ e.g.  LiveCode Super Site,http://livecodesupersite.com/
 
 The resources file is lcmsresources.txt and will be created on first run in the user/documents folder.
 
-The option to exclude a search target was added in v1.0.6, this allows for quicker search returns if you are only intersted in searching a subset of all the search targets available. To exclude a target, click on the green segment above the target to exclude. The segment will turn red to show that this target has been excluded from the next searches. Click again to reset, the segment will turn green.
+The option to exclude a search target was added in v1.0.6, this allows for quicker search returns if you are only interested in searching a subset of all the search targets available. To exclude a target, click on the green segment above the target to exclude. The segment will turn red to show that this target has been excluded from the next searches. Click again to reset, the segment will turn green.
 
 The online dictionary was created using the WebDocMaker by 
 Brian Milby https://github.com/bwmilby/lc-misc/tree/master/WebDocMaker
