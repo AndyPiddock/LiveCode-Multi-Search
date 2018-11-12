@@ -1,14 +1,23 @@
 # LiveCode-Multi-Search
 
 
-![LiveCode-Multi-Search](https://2108.co.uk/LCDict/LCMultiSearch.png)
+![LiveCode-Multi-Search](https://2108.co.uk/LCDict/LCMultiSearch1.png)
 
 **One Search box Eight sites searched**
 Search across
 LiveCode Forum, Nabble Forum, StackOverflow, LiveCode Dictionary, LiveCode Lessons, GitHub, Github Gists and LiveCode Wiki all from one search box!
 
-Filter Gist reults by extension
-Traverse back and forward through your searches
+Filter Gist reults by extension.
+Traverse back and forward through your searches.
+
+Add your own web resources to the Resources dropdown menu via a simple text file.
+This file if it does not exist is created on startup.
+The text file can be amended with your favourite resource links in the form of menu item,web link
+e.g.  LiveCode Super Site,http://livecodesupersite.com/
+
+The resources file is lcmsresources.txt and will be created on first run in the user/documents folder.
+
+The option to exclude a search target was added in v1.0.6, this allows for quicker search returns if you are only intersted in searching a subset of all the search targets available. To exclude a target, click on the green segment above the target to exclude. The segment will turn red to show that this target has been excluded from the next searches. Click again to reset, the segment will turn green.
 
 The online dictionary was created using the WebDocMaker by 
 Brian Milby https://github.com/bwmilby/lc-misc/tree/master/WebDocMaker

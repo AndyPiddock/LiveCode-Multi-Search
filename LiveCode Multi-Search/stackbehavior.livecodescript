@@ -4,7 +4,7 @@
 
 on preOpenStack
 
-   put "V 1.0.5" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
+   put "V 1.0.7" into fld "Version" of card "Main" of stack "LiveCode Multi-Search"
    put empty into fld "Search" of card "Main" of stack "LiveCode Multi-Search"
 
    --setup Navigation Bar - segmented control widget
@@ -43,7 +43,14 @@ on openStack
 
    --set the itemDelimiter to "/"
    --get item 1 to -2 of the effective filename of this stack
-   put specialFolderPath("Documents") into tDocumentsFolder
+
+   --chck for linux , uses home not documents which is not available on linux
+   if the platform is "Linux" then
+    put specialFolderPath("Home") into tDocumentsFolder
+   else --windows and mac
+    put specialFolderPath("Documents") into tDocumentsFolder
+   end if
+
    put tDocumentsFolder & "/lcmsresources.txt" into tFile
 
    if there is a file tFile then--config file exists
