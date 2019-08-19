@@ -1,14 +1,14 @@
 # LiveCode-Multi-Search
 
 
-![LiveCode-Multi-Search](https://2108.co.uk/LCDict/LCMultiSearch1.png)
+![LiveCode-Multi-Search](http://2108.co.uk/wp-content/uploads/2019/08/LC-MultiSearch-1024x681.png)
 
-**One Search box Eight sites searched**
+**One Search box 10 sites searched**
 Search across
-LiveCode Forum, Nabble Forum, StackOverflow, LiveCode Dictionary, LiveCode Lessons, GitHub, Github Gists and LiveCode Wiki all from one search box!
+LiveCode Forum, Nabble Forum, StackOverflow, LiveCode Dictionary, LiveCode Lessons, GitHub, Github Gists, LiveCode Wiki, LC Quality Centre and Mail List all from one search box!
 
-Filter Gist reults by extension.
-Traverse back and forward through your searches.
+Filter Gist reults by extension
+Traverse back and forward through your searches
 
 Add your own web resources to the Resources dropdown menu via a simple text file.
 This file if it does not exist is created on startup.
